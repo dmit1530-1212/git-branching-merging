@@ -1,89 +1,214 @@
-/* This is for testing purposes. */
 body {
-	background-color: #edf2f7;
-	font-family: Arail, sans-serif;
-	font-weight: bold;
-	color: #68778d;
+    background-color: #192f5e;
+    font-family: sans-serif;
 }
 
-/* This is for our wrapper <div>. */
-.container {
-	width: 960px;
-	margin: 0 auto;
-	line-height: 1.5;
-	font-size: 100%;
+.flex-container{
+    display:flex;
+    justify-content: space-between;
 }
 
-/* header styling */
 header{
-	background-color: #fff;
-	margin: 37px 0;
-	text-align: center;
-	/* let us try this */
-	padding: 37px 32px 53px;
-}
-
-h1{
-	font-size: 125px;
-	color: #63b3ed;
-}
-
-header p{
-	font-size: 32px;
-}
-
-header p span{
-	color: #63b3ed;
+    background-color: #fff;
+    padding: 2%;
 }
 
 header a{
-	text-decoration: none;
-	background-color: #dd6b20;
-	font-size: 24px;
-	color: #fff;
-	padding: 10px;
-	margin-left: 10px;
-	border: 2px solid #fff;
+    text-decoration: none;
+    color: #3f3f3f;
+    /* allows the clickable area to take up the full width of the li */
+    display: block;
 }
 
-header a:hover {
-	color: #8594ad;
-	background-color: #fff;
-	border: 2px solid #dd6b20;
+.menu a:hover{
+    background-color: #dcdcdc;
+    border-radius: 4px;
 }
 
-/* style the maibn sections - i.e, flex container */
-main section{
-	display: flex;
-	justify-content: space-between;
+.toggle-btn{
+    border: none;
+    background-color: #fff;
 }
 
-.column{
-	margin-bottom: 36px;
-	padding-bottom: 36px;
-	background-color: #fff;
-	text-align: center;
+.toggle-btn:hover{
+    cursor: pointer;
+    outline:dotted;
 }
 
-.column h2 {
-	font-size: 32px;
-	padding-top: 30px;
-	font-weight:bold;
-	color: #68778d;
+svg rect{
+    fill: #3f3f3f;
 }
 
-.column li {
-	font-size: 18px;
-	font-weight: 400;
-	padding: 5px 0;
+.menu li{
+    /* the extra space from the additional line height makes tis a larger
+     area and veritcally centers the text */
+    line-height: 40px;
+    text-align: center;
 }
 
-/* style the footer */
-footer {
-	background-color: #fff;
-	font-size: 16px;
-	font-weight: 400;
-	font-style: italic;
-	margin-bottom: 50px;
-	padding: 10px 30px;
+/* style the header nav to let us hide the menu. Once it is hidden this will
+   be the default*/
+header nav {
+    /* position the menu - absolute */
+    position: absolute;
+    top: 4.125rem; /*the height of the closed header */
+    left: 0;
+    /* once postioned, this should diasppear from from the document
+       flow, and it does leave a space where it was. */
+    background-color: rgba(255,255,255,0.95);
+    width: 100vw;
+	max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out;
+    z-index: 1;
+}
+
+ul.menu{
+    padding-bottom: 1rem;
+}
+
+.show-nav{
+    max-height: 21.875rem; /*depends on the height of all the menu items*/
+}
+
+/* *********************** submenu *************** */
+li.dropdown svg{
+    display: none;
+}
+
+ul.submenu > li a{
+    text-align: left;
+    text-indent: 50vw;
+}
+
+/* style the section */
+section{
+    text-align: center;
+    text-transform: uppercase;
+    padding: 3rem;
+}
+
+section p{
+    color: #d5e294;
+    border-bottom: 2px solid #d5e294;
+    font-size: 1.777rem;
+    margin-bottom: 1rem;
+    padding-bottom: 10px;
+}
+
+section h2{
+    font-size: 4rem;
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+.gallery{
+    display:flex;
+    flex-flow: wrap;
+    justify-content: center;
+}
+
+.thumbnail{
+    position: relative;
+    margin: 0 0.5rem;
+}
+
+.thumbnail img{
+    margin-bottom: 1rem;
+}
+
+span{
+    background-color: #87a6ab;
+    color: #fff;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    /* position this span over the image */
+    position: absolute;
+    /*the top, right, bottom, left values position in relation to the screen
+    UNLESS the parent container is a relative positioned element */
+    top: -20px;
+    right:-10px;
+}
+
+/* this is a bit of an experiment for :focus */
+ul.menu li a:focus{
+    color: red;
+    border: 1px solid red;
+    border-radius: 4px;
+    background-color: #fcfcfc;
+}
+
+@media only screen and (min-width: 38rem){
+    .toggle-btn{
+        display: none;
+    }
+
+    /* now we want to see the menu */
+    header nav{
+        max-height: 12.5rem;
+        overflow: visible;
+        /*position: relative;
+        top: 0;
+        */
+        /* reset the position value and the width */
+        /* postion static is how elements are normally placed
+          - unsetting the absolute value */
+        position: static;
+        width: auto;
+        max-height: 200px;
+        overflow: hidden;
+    }
+
+    .menu,
+    header{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .menu li{
+        margin: 0 0.5rem 0.2rem 0.5rem;
+    }
+
+    .menu li a{
+        padding: 0 0.5rem;
+    }
+
+    li.dropdown svg{
+        display: block;
+        width: 1rem;
+       margin-left: 0.5rem;
+    }
+
+    li.dropdown > a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    ul.submenu >li a{
+        text-indent: 0;
+    }
+
+    ul.submenu{
+        visibility: hidden;
+        opacity: 0;
+        z-index: 1;
+        position:absolute;
+        background-color: #fff;
+    }
+
+    ul.menu li:hover > ul{
+        visibility: visible;
+        opacity: 1;
+        
+        transition: all 0.5s ease-in-out;
+    }
+
+    ul.menu li:focus-within >ul,
+    ul.menu li > ul:focus{
+        visibility: visible;
+        opacity: 1;
+        display: block;
+    }
 }
