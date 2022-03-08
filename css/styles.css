@@ -177,7 +177,7 @@ ul.menu li a:focus{
     li.dropdown svg{
         display: block;
         width: 1rem;
-       margin-left: 0.5rem;
+        margin-left: 0.5rem;
     }
 
     li.dropdown > a{
